@@ -147,3 +147,194 @@
 // Exercise 5.2: Month Topic
 // Which types are suitable for representing a month?
 // Numerically? a byte, by name? A string.
+
+
+// // Write a program in which:
+// // 1. When executed, the program should write out a table of matching Celcius and Fahrenheit
+// // values.
+// // • Formula: TF = 32 + 9
+// // 5 TC
+// // 2. There should be one matching pair per line.
+// // 3. The list should start at -5◦C and end at 40◦C.
+// // 4. The list should have one line for ach 0.5◦C.
+// float celsius = -5f;
+
+// while (celsius <= 40f)
+// {
+//     Console.WriteLine("Celsius: " + celsius + " | Fahrenheit: " + (32f + 9f / 5f * celsius));
+//     celsius += 0.5f;
+// }
+
+// // Exercise 5.20: Dice Topic
+// // Write a program in which:
+// // 1. the result of a roll of a dice is stored in a variable named dice.
+// // • Which type should the variable be declared as?
+// // • Chose a value and initialize the variable to it.
+// // 2. Declare a boolean variable and assign it a value that represent whether the value in dice
+// // is even and greater than 3.
+// // 3. Print out the value of this boolean variable.
+
+// int dice = 4;
+// bool evenAndGreaterThanFour = dice > 3 && dice % 2 == 0;
+// Console.WriteLine(evenAndGreaterThanFour);
+
+// // Exercise 6.3: Christmas Sale Topic
+// // Write a program in which:
+// // 1. A variable is declared and initialized to the value 21816000. This value represents a number
+// // of seconds since newyear (assuming that all months are 30 days long).
+// // 2. Some other variable represents a price and has a value of 599.95.
+// // 3. If it is Christmas, there is a 30% rebate. Find a reasonable way of determining when it is
+// // Christmas.
+// // 4. Calculate the current price (including any rebate) and store this in a third variable.
+// // 5. Print out the value of this variable.
+// // Be sure to test the logic you have written be assigning the first variable different values. Which
+// // values would be relevant to test? Chrismas and not christmas values: 
+
+// int secSinceNewYear = 31816000;
+// //Christmas Value: 21816000;
+// float price = 599.95f;
+// int currentMonth = secSinceNewYear / 60 / 60 / 24 / 30;
+
+// if(currentMonth >= 12)
+// {
+//     Console.WriteLine("Rebate Price: " + ((1 - 0.3) * price).ToString("0.00") + " | Current Month: " + currentMonth);
+// }
+// else
+// {
+//     Console.WriteLine("Regular Price: " + price.ToString("0.00") + " | Current Month: " + currentMonth);
+// }
+
+// // A common educational calendar will have the following holidays:
+// // • Autumn Holiday October
+// // • Christmas Holiday December
+// // • Spring Holiday April
+// // • Summer Holiday July + August
+// // Write a program in which:
+// // 1. A month is given in the form of an integer via a variable.
+// // 2. Depending on the value of this variable, either print out the name of the holiday (if there
+// // is a holiday in the month), or simply “Hard work” (if there isn’t).
+
+// int month = 11;
+// switch(month) 
+// {
+//     case 4:
+//         Console.WriteLine("Spring Holiday");
+//         break;
+//     case 7: case 8:
+//         Console.WriteLine("Summer Holiday");
+//         break;
+//     case 10:
+//         Console.WriteLine("Autumn Holiday");
+//         break;
+//     case 12:
+//         Console.WriteLine("Christmas Holiday");
+//         break;
+//     default:
+//         Console.WriteLine("Hard work");
+//         break;
+// }
+
+// // Exercise 6.9: Areas of Circles Topic
+// // Write a program that calculates and prints out the area (π · r2) of three circles that have the
+// // radiuses 1, 3 and 5.
+// // Notice: This is a repetition of exercise 5.8, but this time you have a larger toolbox at your
+// // disposal.
+
+// float[] circleRadiuses = {1f, 3f, 5f};
+// float pi = 3.1416f;
+
+// float CalcCircleArea(float radius)
+// {
+//     return pi * radius * 2;
+// }
+
+// foreach (int value in circleRadiuses)
+// {
+//     Console.WriteLine(CalcCircleArea(value));
+// }
+
+// // Exercise 7.10: Length of Month Topic
+// // Write a program, that given a month number in a variable prints out the number of days in this
+// // month. Do not consider leap years.
+// // Note: This is a repetition of exercise 6.4, but this time you have a larger toolbox at your
+// // disposal.
+// string month = "February";
+// switch(month) 
+// {
+//     case "January": case "Marts": case "May": case "July": case "August": case "October": case "December":
+//         Console.WriteLine(31);
+//         break;
+//     case "April": case "June": case "September": case "November":
+//         Console.WriteLine(30);
+//         break;
+//     case "February":
+//         Console.WriteLine(29);
+//         break;
+//     default:
+//         Console.WriteLine("Invalid Input");
+//         break;
+// }
+
+// Exercise 6.10: Primes Topic
+// Write a program that calculates all prime numbers below 1,000,000 and prints out the largest.
+// Hints (unless you want more of a challenge):
+// • A positive integer is a prime number if, and only if it is not divisible by integers other than
+// 1.
+// • Use a divide-and-conquer strategy1 whereby you subdivide the task into these subtasks:
+// – Iterate through all positive integers below 1.000.000. Don’t we have a construct that
+// can do this?
+// – Determine whether a given positive number is a prime.
+// – Print out an integer number (if it is prime).
+// In order to determine whether a given positive integer is prime, you can, once again, divide
+// an conquer:
+// 1. Declare a boolean variable named is_prime and initialize it to True.
+// 2. Iterate through all integers from (and including) 2 until (but not including) 1,000,000.
+// 3. Check whether the prime candidate is divisible by each of these numbers. If that is
+// the case, you should assign the False value to is_prime. But how do you determine
+// one number is divisible by another?
+// – You try it, of course!
+// – If a number is divisible by another, then there won’t be a remainder if you do an
+// integer division and the modulo operation (via the % operator) will evaluate to
+// zero.
+// – As an alternative, one could exploit that the integer division will result in a
+// rounding error so that (a/b) · b 6 = a.
+// 4. At this point, is_prime represent the truth value of whether the prime candidate is
+// an actual prime.
+
+int max = -1;
+for(int i = 0; i < 100; i++)
+{    
+    // Numbers less than or equal to 1 are not prime
+    if (i <= 1)
+    {
+        continue; 
+    }
+    
+    // 2 is the only even prime number
+    if (i == 2)
+    {
+        max = i;
+    }
+     
+    // Exclude all other even numbers
+    if (i % 2 == 0)
+    {
+        continue; 
+    } 
+
+    // Check odd factors up to the square root of n
+    for (int j = 3; j * j <= i; j += 2)
+    {
+        if (i % j == 0)
+        {
+            continue;
+        } // Found a factor, so not prime
+    }
+
+    if (i > max)
+    {
+        max = i;
+    }
+    // No factors found, it's prime     
+}
+ Console.WriteLine(max);
